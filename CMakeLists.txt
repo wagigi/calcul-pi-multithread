@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.9)
+project(tester C)
+
+set(CMAKE_C_STANDARD 99)
+
+link_libraries(-lm)
+
+link_libraries(pthread)
+
+
+add_executable(tester main.c)
