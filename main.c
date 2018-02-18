@@ -2,7 +2,7 @@
 #include <math.h>
 #include <pthread.h>
 
-#define NBT 9
+#define NBT 99999
 
 struct parametre {
     long debut;

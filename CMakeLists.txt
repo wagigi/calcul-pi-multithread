@@ -8,4 +8,4 @@ link_libraries(-lm)
 link_libraries(pthread)
 
 
-add_executable(tester main.c)
+add_executable(piMultiThread main.c)
