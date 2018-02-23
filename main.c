@@ -32,7 +32,7 @@ int main() {
      * Thread 6 : 10000 à 11999
      * Thread 7 : 12000 à 13999
      * Thread 8 : 14000 à 15999*/
-    int incrementation=190000;
+    int incrementation=999990;
     int err;
     long double ppiret=0;
     pthread_t threadID[NBT];
@@ -57,7 +57,6 @@ int main() {
     pi = ppiret*4;
     long double cpi=3.14159265358979323846264338327950288419716939937510;
     printf("La valeur calculée de PI est : %.50Lf \nLa valeur connue de PI est   : %.50Lf\n", pi, cpi);
-    printf("La valeur calculée est proche à %Lf pourcents",((100*pi)/cpi));
-
+    printf("La valeur calculée est proche à %Lf pourcents\n",((100*pi)/cpi));
     return 0;
 }
