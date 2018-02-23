@@ -2,7 +2,7 @@
 #include <math.h>
 #include <pthread.h>
 
-#define NBT 99999
+#define NBT 8
 
 struct parametre {
     long debut;
@@ -23,24 +23,24 @@ void * calculeur(void * params){
 }
 
 int main() {
-    /*Calcul de PI avec 8 threads
-     * Thread 1 :     0 à 2000
-     * Thread 2 :  2001 à 4000
-     * Thread 3 :  4001 à 6000
-     * Thread 4 :  6001 à 8000
-     * Thread 5 :  8001 à 10000
-     * Thread 6 : 10001 à 12000
-     * Thread 7 : 12001 à 14000
-     * Thread 8 : 14001 à 16000*/
+    /* Exemple du calcul de PI avec 8 threads et avec un increment de 2000
+     * Thread 1 :     0 à 1999
+     * Thread 2 :  2000 à 3999
+     * Thread 3 :  4000 à 5999
+     * Thread 4 :  6000 à 7999
+     * Thread 5 :  8000 à 9999
+     * Thread 6 : 10000 à 11999
+     * Thread 7 : 12000 à 13999
+     * Thread 8 : 14000 à 15999*/
+    int incrementation=190000;
     int err;
     long double ppiret=0;
     pthread_t threadID[NBT];
     PARAMETRE lanceur[NBT];
     for (int i = 0; i < NBT; i++) {
 
-        if (i==0){lanceur[i].debut=0;}
-        else{lanceur[i].debut=(i*2000)+1;}
-        lanceur[i].increment=2000;
+        lanceur[i].debut=(i*incrementation);
+        lanceur[i].increment=incrementation;
         lanceur[i].ppi=0;
 
         if ((err=pthread_create(&threadID[i], NULL, calculeur, (void*)&lanceur[i])) != 0) {
@@ -55,7 +55,9 @@ int main() {
     }
     long double pi;
     pi = ppiret*4;
-    printf("La valeur de PI est : %.50Lf \n", pi);
+    long double cpi=3.14159265358979323846264338327950288419716939937510;
+    printf("La valeur calculée de PI est : %.50Lf \nLa valeur connue de PI est   : %.50Lf\n", pi, cpi);
+    printf("La valeur calculée est proche à %Lf pourcents",((100*pi)/cpi));
 
     return 0;
 }
